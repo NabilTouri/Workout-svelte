@@ -18,21 +18,20 @@
         activeDay.set(day);
     }
 
-    // Define components for different interfaces
-    // For demonstration purposes, let's define simple components
-    // You can replace them with your actual interface components
-
-    // Interface component for each day
-    // We will use a dynamic component to render different interfaces for different days
-    // let DayInterface = ({ day }) => {
-    //     return (
-    //         <div>
-    //             <h1>{day}'s Interface</h1>
-    //             <!-- Add content here -->
-    //         </div>
-    //     );
-    // };
-
+    let newItem = '';
+	
+    let todoList = [{}];
+	
+	function addToList() {
+		todoList = [...todoList, {text: newItem, status: false}];
+		newItem = '';
+	}
+	
+	function removeFromList(index) {
+		todoList.splice(index, 1)
+		todoList = todoList;
+    }
+    
 </script>
 
 <!-- Sidebar component -->
@@ -56,5 +55,15 @@
     {#if $activeDay}
         <!-- Render the interface for the active day -->
         <p class="text-lg font-normal">{$activeDay}'s Workout plan</p>
+        <input bind:value={newItem} type="text" placeholder="new todo item..">
+        <button on:click={addToList}>Add</button>
+
+        <br/>
+        {#each todoList as item, index}
+	        <input bind:checked={item.status} type="checkbox">
+	        <span class:checked={item.status}>{item.text}</span>
+	        <button on:click={() => removeFromList(index)}>❌</button>
+	        <br/>
+        {/each}
     {/if}
 </div>
