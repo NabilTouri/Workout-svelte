@@ -21,3 +21,46 @@ export async function POST(requestEvent) {
         };
     }   
 }
+
+export async function DELETE(requestEvent) {
+    try {
+
+        const { request } = requestEvent;
+        // console.log("DELETE request received");
+        const newComment = await request.json()
+        const mysqlconn = await mysqlconnFn();
+        await mysqlconn.query("DELETE FROM training WHERE id = ?", [newComment.id])
+        return json({ message: "Dati eliminati con successo dal database" }, { status: 200 })
+    } catch (error) {
+       console.error("Errore durante l'eliminazione dei dati dal database:", error);
+        return {
+            status: 500,
+            body: {
+                error: "Si è verificato un errore durante l'eliminazione dei dati dal database"
+            }
+        };
+    }
+}
+
+export async function PUT(requestEvent) {
+    try {
+
+        const { request } = requestEvent;
+        console.log("PUT request received");
+        const newComment = await request.json()
+        console.log(newComment)
+        const mysqlconn = await mysqlconnFn();
+        await mysqlconn.query("UPDATE training SET day_id = ?, exercise_id = ?, sets = ?, repetitions = ? WHERE id = ?", [newComment.day_id, newComment.exercise_id, newComment.sets, newComment.repetitions, newComment.id])
+
+        return json({ message: "Dati aggiornati con successo nel database" }, { status: 200 })
+
+    } catch (error) {
+        console.error("Errore durante l'aggiornamento dei dati dal database:", error);
+        return {
+            status: 500,
+            body: {
+                error: "Si è verificato un errore durante l'aggiornamento dei dati dal database"
+            }
+        };
+    }
+}

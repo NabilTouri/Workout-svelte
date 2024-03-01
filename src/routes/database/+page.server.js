@@ -1,7 +1,7 @@
 import { mysqlconnFn } from '../../hooks.server.js'
 
 export const load = async () => {
-    console.log("Home page universal load function called")
+    // console.log("Home page universal load function called")
     try {
         const mysqlconn = await mysqlconnFn();
         const day = await mysqlconn.query("SELECT * FROM day")
@@ -10,7 +10,7 @@ export const load = async () => {
                 return rows;
             });
 
-        const training = await mysqlconn.query("SELECT day.name AS day, exercise.name AS exercise, training.sets, training.repetitions FROM training JOIN day ON training.day_id = day.id JOIN exercise ON training.exercise_id = exercise.id;")
+        const training = await mysqlconn.query("SELECT training.id, day.name AS day, exercise.name AS exercise, training.sets, training.repetitions FROM training JOIN day ON training.day_id = day.id JOIN exercise ON training.exercise_id = exercise.id;")
             .then(function([rows,fields]) {
                 // console.log(rows);
                 return rows;
