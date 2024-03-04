@@ -2,6 +2,7 @@ import { mysqlconnFn } from '../../hooks.server.js'
 
 export const load = async () => {
     // console.log("Home page universal load function called")
+    const title = "Training";
     try {
         const mysqlconn = await mysqlconnFn();
         const day = await mysqlconn.query("SELECT * FROM day")

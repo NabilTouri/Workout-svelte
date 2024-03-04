@@ -1,30 +1,30 @@
 <script>
-    import { Footer, FooterCopyright, FooterLinkGroup, FooterLink, FooterBrand, FooterIcon } from 'flowbite-svelte';
+    import { Footer, FooterCopyright, FooterLinkGroup, FooterLink, P, FooterIcon } from 'flowbite-svelte';
     import { FacebookSolid, GithubSolid, DiscordSolid, TwitterSolid } from 'flowbite-svelte-icons';
 </script>
 
-<Footer footerType="socialmedia" class="bg-gray-200 text-white">
+<Footer footerType="socialmedia" class="bg-dark-800 text-white">
     <div class="md:flex md:justify-between">
-        <div class="mb-6 md:mb-0 text-black">
-            <FooterBrand href="https://flowbite.com" alt="Flowbite Logo" name="Workout Plan" />
+        <div class="md:w-1/2">
+            <P class="text-white font-bold text-xl md:mx-4">Workout Plan</P>
         </div>
-        <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+        <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 md:w-1/2">
             <div>
-                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
+                <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Resources</h2>
                 <FooterLinkGroup>
                     <FooterLink liClass="mb-4" href="/">Flowbite</FooterLink>
                     <FooterLink liClass="mb-4" href="/">Tailwind CSS</FooterLink>
                 </FooterLinkGroup>
             </div>
             <div>
-                <h2 class="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">Follow us</h2>
+                <h2 class="mb-6 text-sm font-semibold uppercase text-white dark:text-white">Follow us</h2>
                 <FooterLinkGroup>
                     <FooterLink liClass="mb-4" href="/">GitHub</FooterLink>
                     <FooterLink liClass="mb-4" href="/">Discord</FooterLink>
                 </FooterLinkGroup>
             </div>
             <div>
-                <h2 class="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">Legal</h2>
+                <h2 class="mb-6 text-sm font-semibold uppercase text-white dark:text-white">Legal</h2>
                 <FooterLinkGroup>
                     <FooterLink liClass="mb-4" href="/">Privacy Policy</FooterLink>
                     <FooterLink liClass="mb-4" href="/">Terms & Conditions</FooterLink>
@@ -32,21 +32,21 @@
             </div>
         </div>
     </div>
-    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-500 lg:my-8" />
     <div class="sm:flex sm:items-center sm:justify-between">
         <FooterCopyright href="/" by="Flowbite™" />
         <div class="flex mt-4 space-x-6 rtl:space-x-reverse sm:justify-center sm:mt-0">
             <FooterIcon href="/">
-                <FacebookSolid class="w-4 h-4 text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white" />
+                <FacebookSolid class="w-4 h-4 text-gray-300 dark:text-gray-300 hover:text-white dark:hover:text-white" />
             </FooterIcon>
             <FooterIcon href="/">
-                <DiscordSolid class="w-4 h-4 text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white" />
+                <DiscordSolid class="w-4 h-4 text-gray-300 dark:text-gray-300 hover:text-white dark:hover:text-white" />
             </FooterIcon>
             <FooterIcon href="/">
-                <TwitterSolid class="w-4 h-4 text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white" />
+                <TwitterSolid class="w-4 h-4 text-gray-300 dark:text-gray-300 hover:text-white dark:hover:text-white" />
             </FooterIcon>
             <FooterIcon href="/">
-                <GithubSolid class="w-4 h-4 text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white" />
+                <GithubSolid class="w-4 h-4 text-gray-300 dark:text-gray-300 hover:text-white dark:hover:text-white" />
             </FooterIcon>
         </div>
     </div>
