@@ -2,7 +2,7 @@ import { mysqlconnFn } from '../../hooks.server.js'
 
 export const load = async () => {
     // console.log("Home page universal load function called")
-    const title = "Training";
+    const title = "Training Page";
     try {
         const mysqlconn = await mysqlconnFn();
         const day = await mysqlconn.query("SELECT * FROM day")
@@ -28,6 +28,7 @@ export const load = async () => {
             return rows;
         });
         return {
+            title,
             day,
             training,
             muscles,
