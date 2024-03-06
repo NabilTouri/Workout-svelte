@@ -14,7 +14,7 @@
 	<Header />
 	{/if}
 
-	<main class="flex-grow w-full">
+	<main class="bg-gradient-to-b from-dark-700 to-dark-800 p-10 flex-grow w-full">
 		<!-- Your main content goes here -->
 		<slot />
 	</main>
