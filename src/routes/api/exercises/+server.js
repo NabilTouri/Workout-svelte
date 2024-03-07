@@ -1,3 +1,6 @@
+import { API_KEY } from '$env/static/private'
+import { json } from '@sveltejs/kit'
+
 export const GET = async (loadEvent) => {
     const muscle = [
         'abdominals',
@@ -17,7 +20,6 @@ export const GET = async (loadEvent) => {
         'traps',
         'triceps'
     ];
-    const apiKey = 'mdSFB21Rg1wlfhJmUeT+aQ==Sq8gwUUGDxp8NOYB';
     const { fetch } = loadEvent;
 
     const allExercises = [];
@@ -25,7 +27,7 @@ export const GET = async (loadEvent) => {
     for (const muscleName of muscle) {
         const response = await fetch(`https://api.api-ninjas.com/v1/exercises?muscle=${muscleName}`, {
             headers: {
-                'X-Api-Key': apiKey
+                'X-Api-Key': API_KEY
             }
         });
 
@@ -37,9 +39,5 @@ export const GET = async (loadEvent) => {
         allExercises.push(...exercises);
     }
 
-    return new Response(JSON.stringify(allExercises), {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
+    return json(allExercises);
 }
