@@ -4,6 +4,7 @@
   const training = data.training;
   const muscles = data.muscles;
   const exercises = data.exercises;
+  const userForm = data.userForm;
   let popupModal = false;
   let postModal = false;
   let putModal = false;
@@ -19,9 +20,10 @@
   const exerciseForm = writable('');
   const setsForm = writable('');
   const repetitionForm = writable('');
-  const userForm = writable('1');
   const selectedMuscle = writable('');
   const filteredExercises = writable([]);
+
+  const trainingById = training.filter(item => item.user_id === userForm);
 
   // Funzione per gestire il click su un SidebarItem
   function handleSidebarItemClick(name, id) {
@@ -75,7 +77,7 @@
       exercise_id: $exerciseForm,
       sets: $setsForm,
       repetitions: $repetitionForm,
-      user_id: $userForm
+      user_id: userForm
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8"
@@ -103,7 +105,7 @@ function put() {
       exercise_id: $exerciseForm,
       sets: $setsForm,
       repetitions: $repetitionForm,
-      user_id: $userForm
+      user_id: userForm
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8"
@@ -159,7 +161,7 @@ function put() {
                 <TableHeadCell padding="px-4 py-3" scope="col" class="text-white">Repetitions</TableHeadCell>
               </TableHead>
               <TableBody>
-                {#each training as item}
+                {#each trainingById as item}
                   {#if item.day === dayName.name}
                   <TableBodyRow class="bg-dark-900 hover:bg-gray-800">
                     <TableBodyCell tdClass="px-4 py-3" class="text-white">{item.day}</TableBodyCell>

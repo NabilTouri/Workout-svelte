@@ -18,8 +18,7 @@ export const actions = {
     login: async ({ request, cookies, url, fetch }) => {
         const data = await request.formData()
         const username = data.get('username')
-        const password = data.get('password')
-        
+        const password = data.get('password')  
         if (!username || !password) {
             return fail(400, {
                 username,
