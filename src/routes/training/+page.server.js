@@ -1,11 +1,11 @@
 import { mysqlconnFn } from '../../hooks.server.js'
 import { redirect } from "@sveltejs/kit"
 
-export const load = async ({ cookies, url }) => {
-    if (!cookies.get('username')) {
-        throw redirect(307, `/login?redirectTo=${url.pathname}`)
-    }
+export const load = async ({ cookies, url, fetch }) => {
     // console.log("Home page universal load function called")
+    if (!cookies.get('session_token')) {
+        throw redirect(307, `/auth/login?redirectTo=${url.pathname}`)
+    }
     const title = "Training Page";
     try {
         const mysqlconn = await mysqlconnFn();

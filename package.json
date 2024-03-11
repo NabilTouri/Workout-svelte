@@ -34,9 +34,11 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"bcrypt": "^5.1.1",
 		"flowbite-svelte-blocks": "^1.1.0",
 		"json-server": "^1.0.0-alpha.23",
 		"mysql2": "^3.9.1",
-		"pg": "^8.11.3"
+		"pg": "^8.11.3",
+		"uuid": "^9.0.1"
 	}
 }
