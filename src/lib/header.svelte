@@ -1,16 +1,33 @@
+<!-- header.svelte -->
+
 <script>
     import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Button, Dropdown, DropdownItem, DropdownDivider, P } from 'flowbite-svelte';
     import { ChevronDownOutline, GithubSolid, XCompanySolid } from "flowbite-svelte-icons";
+    import { onMount } from 'svelte';
+
+    export let logout
+    export let getSessionToken = null; // Prop per la funzione di fetch del token di sessione
+    let session_token = null;
+
+    onMount(async () => {
+        if (getSessionToken) {
+            session_token = await getSessionToken();
+        }
+    });
 </script>
 
-<header class=" shadow-sm sticky top-0 z-50">
+<header class="shadow-sm sticky top-0 z-50">
     <Navbar shadow class="bg-dark-800">
         <NavBrand href="/">
             <!-- <img src="" class="me-3 h-6 sm:h-9" alt="Flowbite Logo" /> -->
             <P class="text-white font-bold text-xl mx-4">Workout Plan</P>
         </NavBrand>
         <div class="flex md:order-2">
-            <Button class="bg-gradient-to-r from-primary-600 to-primary-800" size="sm">Get started</Button>
+            {#if session_token}
+                <Button on:click={logout} class="bg-gradient-to-r from-primary-600 to-primary-800" size="sm">Logout</Button>
+            {:else}
+                <Button href="auth/login" class="bg-gradient-to-r from-primary-600 to-primary-800" size="sm">Login</Button>
+            {/if}
             <NavHamburger />
         </div>
         <NavUl class="order-1">

@@ -1,5 +1,7 @@
 <script>
     import { enhance } from '$app/forms';
+    import { Section, Register } from "flowbite-svelte-blocks";
+    import { Button, Checkbox, Label, Input, Select, A, P } from "flowbite-svelte";
     export let form = {};
     
     let name = ''
@@ -25,51 +27,52 @@
 
 </script>
 
-<div class="container mx-auto px-4 py-8">
-    <h2 class="text-3xl font-semibold mb-4">Register</h2>
-    <form method="post" action="?/register" use:enhance>
-        <p>{form?.message || ''}</p>
-        <div class="mb-4">
-            <label for="name" class="block text-gray-700">Name</label>
-            <input type="text" name="name" placeholder="Name" class="input" bind:value={name} required>
+    <Section name="login" sectionClass="lg:w-2/3 mx-auto">
+      <Register>
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h3 class="text-xl font-medium text-center text-gray-900 dark:text-white p-0">Register</h3>
+            <P>{form?.message || ''}</P>
+          <form class="flex flex-col space-y-6" method="post" action="?/register">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Label class="space-y-2">
+                <span>Your name</span>
+                <Input type="text" name="name" placeholder="Name" bind:value={name} required />
+                </Label>
+                <Label class="space-y-2">
+                <span>Your surname</span>
+                <Input type="text" name="surname" placeholder="Surname" bind:value={surname} required />
+                </Label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <Label class="space-y-2">
+                        <span>Your age</span>
+                        <Input type="number" name="age" placeholder="Age" required />
+                    </Label>
+                    <Label class="space-y-2">
+                        <span>Your gender</span>
+                        <Select name="gender" class="input" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </Select>
+                    </Label>
+                </div>
+                <Label class="space-y-2">
+                    <span>Username</span>
+                    <Input type="text" name="username" placeholder="Username" bind:value={username} required />
+                </Label>
+                <Label class="space-y-2">
+                    <span>Password</span>
+                    <Input type="password" name="password" placeholder="Password" required />
+                </Label>
+                <Label class="space-y-2">
+                    <span>Confirm password</span>
+                    <Input type="password" name="confirmPassword" placeholder="Confirm password" required />
+                </Label>
+            </div>
+            <Button type="submit" class="w-full1">Register</Button>
+            <P class="text-sm font-light text-gray-500 dark:text-gray-400">
+              Do you already have an account? <a href="/auth/login  " class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login</a>
+            </P>
+          </form>
         </div>
-
-        <div class="mb-4">
-            <label for="surname" class="block text-gray-700">Surname</label>
-            <input type="text" name="surname" placeholder="Surname" class="input" bind:value={surname} required>
-        </div>
-
-        <div class="mb-4">
-            <label for="age" class="block text-gray-700">Age</label>
-            <input type="number" name="age" placeholder="Age" class="input" required>
-        </div>
-        
-        <div class="mb-4">
-            <label for="gender" class="block text-gray-700">Gender</label>
-            <select name="gender" class="input">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-        </div>
-
-        <div class="mb-4">
-            <label for="username" class="block text-gray-700">Username</label>
-            <input type="text" name="username" placeholder="Username" class="input" bind:value={username} required>
-        </div>
-
-        <div class="mb-4">
-            <label for="password" class="block text-gray-700">Password</label>
-            <input type="password" name="password" placeholder="Password" class="input" required>
-        </div>
-
-        <div class="mb-4">
-            <label for="confirmPassword" class="block text-gray-700">Confirm password</label>
-            <input type="password" name="confirmPassword" placeholder="Confirm password" class="input" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Register</button>
-    </form>
-    <p class="mt-4">
-        <a href="/auth/login" class="text-blue-500">Login</a>
-    </p>
-</div>
+      </Register>
+    </Section>

@@ -39,28 +39,32 @@ export const actions = {
 
         if (checkPasswordLength(password) && checkPasswordComplexity(password)) {
             console.log("La password soddisfa i requisiti di lunghezza e complessità.");
+            const hashedPassword = bcrypt.hashSync(password, 10); // Il secondo argomento è il costo del hashing
+            await fetch('/api/user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name,
+                    surname,
+                    age,
+                    gender,
+                    username,
+                    hashedPassword
+                })
+            })
+            // // cookies.set('username', username, { path: '/' })
+            throw redirect(303, '/auth/login')
         } else {
-            console.log("La password non soddisfa i requisiti di lunghezza e/o complessità.");
+            return fail(400, {
+                username,
+                message: 'Password does not meet the requirements'
+            })
         }
 
 
-        const hashedPassword = bcrypt.hashSync(password, 10); // Il secondo argomento è il costo del hashing
-        await fetch('/api/user', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name,
-                surname,
-                age,
-                gender,
-                username,
-                hashedPassword
-            })
-        })
-        // // cookies.set('username', username, { path: '/' })
-        throw redirect(303, '/auth/login')
+        
     }
 }
 

@@ -1,8 +1,30 @@
 <script>
-		import '../app.pcss';
-		import { page } from '$app/stores';
-		import Header from '$lib/header.svelte';
-		import Footer from '$lib/footer.svelte';
+	import '../app.pcss';
+	import { page } from '$app/stores';
+	import Header from '$lib/header.svelte';
+	// import Footer from '$lib/footer.svelte';
+
+	export let data
+	const cookie = data.cookie
+
+	const getSessionToken = async () => {
+        return cookie
+    }
+
+	const logout = async () => {
+		fetch('/api/cookies', {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+		.then((response) => response.json())
+    	.then((json) => {
+      		console.log(json);
+    	})
+    	.then(() => location.reload());
+	}
+
 </script>
 
 <svelte:head>
@@ -11,14 +33,14 @@
 
 <div class="flex flex-col min-h-screen w-full">
 	{#if !$page.error}
-	<Header />
+	<Header {getSessionToken} {logout}/>
 	{/if}
 
-	<main class="bg-gradient-to-b from-dark-700 to-dark-800 flex-grow w-full">
+	<div class="flex-grow bg-dark-800">
 		<slot />
-	</main>
+	</div>
 
-	{#if !$page.error}
+	<!-- {#if !$page.error}
 	<Footer />
-	{/if}
+	{/if} -->
 </div>

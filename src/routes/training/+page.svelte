@@ -125,7 +125,7 @@ function put() {
 }
 </script>
 
-<div class="flex flex-col sm:flex-row bg-gradient-to-b from-dark-700 to-dark-800 p-10">
+<div class="flex flex-col sm:flex-row bg-gradient-to-b from-dark-700 to-dark-800 p-10 flex-grow">
   <!-- Sidebar -->
   <Section name="tableheader" sectionClass="flex flex-col items-center mb-8 sm:mb-0 sm:mr-4">
     <Sidebar>
@@ -152,6 +152,7 @@ function put() {
         </Button>
         {#each day as dayName}
           {#if $selectedItem === dayName.name}
+          <h2 class="text-2xl font-bold text-white">{dayName.name}</h2>
           <div class="border rounded overflow-hidden">
             <Table class="bg-black" hoverable>
               <TableHead class="bg-black">

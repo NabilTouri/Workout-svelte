@@ -1,38 +1,45 @@
 <script>
     import { page } from '$app/stores';
-    import { enhance } from '$app/forms';
+    import { P, Input, Button, Checkbox, Label } from 'flowbite-svelte'
+    import { Section, Register } from "flowbite-svelte-blocks";
+    import { enhance } from '$app/forms'
     export let form = {};
 
-    let username = ''
+    let username = '';
 
     export const snapshot = {
         capture: () => {
             return {
                 username,
-            }
+            };
         },
         restore: (data) => {
-            username = data.username
-        
+            username = data.username;
         }
-    }
+    };
 
     const redirectTo = $page.url.searchParams.get('redirectTo') || '/';
 </script>
-
-<div class="container mx-auto px-4 py-8">
-    <h2 class="text-3xl font-semibold mb-4">Login</h2>
-    <form method="post" action="?/login&redirectTo={redirectTo}" use:enhance>
-        <p class="mb-4">{form?.message || ''}</p>
-        <div class="mb-4">
-            <input type="text" name="username" class="input" placeholder="Username" bind:value={username}>
+    
+    <Section name="login" sectionClass="lg:w-1/3 mx-auto">
+      <Register>
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <h3 class="text-xl text-center font-medium text-gray-900 dark:text-white p-0">Login</h3>
+          <P class="mb-4">{form?.message || ''}</P>
+          <form class="flex flex-col space-y-6" method="post" action="?/login&redirectTo={redirectTo}">
+            <Label class="space-y-2">
+              <span>Your username</span>
+              <Input type="text" name="username" placeholder="Username" bind:value={username} required />
+            </Label>
+            <Label class="space-y-2">
+              <span>Your password</span>
+              <Input type="password" name="password" placeholder="Password" required />
+            </Label>
+            <Button type="submit" class="w-full1">Login</Button>
+            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+              Don’t have an account yet? <a href="/auth/register" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Register</a>
+            </p>
+          </form>
         </div>
-        <div class="mb-4">
-            <input type="password" name="password" class="input" placeholder="Password">
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-    <p class="mt-4">
-        <a href="/auth/register" class="text-blue-500">Register</a>
-    </p>
-</div>
+      </Register>
+    </Section>
