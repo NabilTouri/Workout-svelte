@@ -24,7 +24,7 @@
 </style>
   
 <div class="flex flex-col justify-center items-center min-h-screen text-center">
-    <Heading tag="h1" class="mb-4 text-5xl font-extrabold md:text-6xl lg:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-900">Workout Plan</Heading>
+    <Heading tag="h1" class="mb-4 text-5xl font-extrabold md:text-6xl lg:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-900">Workout Plan BIG BOY</Heading>
     <P align="center" class="mb-6 text-2xl lg:text-3xl sm:px-16 xl:px-48" weight="black"><mark class="px-2 text-white bg-gradient-to-r from-primary-600 to-primary-800 rounded">Empower your fitness journey with Workout Plan!</mark></P>
     
     <Button class="bg-gradient-to-r from-primary-600 to-primary-800"
