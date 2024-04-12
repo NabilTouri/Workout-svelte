@@ -1,5 +1,5 @@
 import { mysqlconnFn } from '../../hooks.server.js'
-import { redirect } from "@sveltejs/kit"
+import { error, redirect } from "@sveltejs/kit"
 
 export const load = async ({ cookies, url, fetch }) => {
     // console.log("Home page universal load function called")
@@ -34,6 +34,15 @@ export const load = async ({ cookies, url, fetch }) => {
         const response = await fetch('/api/user')
         const users = await response.json()
         const user = users.find(user => user.userAuthToken === cookies.get('session_token'))
+        if (user === undefined) {
+            await fetch('api/cookies', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+        }
+        
         const userForm = user.id;
         return {
             title,

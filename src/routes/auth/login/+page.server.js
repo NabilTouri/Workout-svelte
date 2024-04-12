@@ -33,7 +33,6 @@ export const actions = {
         if (!user) {
             return fail(400, {
                 username,
-                message: 'User not found'
             })
         }
 
